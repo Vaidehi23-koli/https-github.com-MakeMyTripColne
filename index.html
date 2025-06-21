@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible"content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Make My Trip</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+   
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="nav-logo border">
+                    <div class="logo"></div>
+                </div>
+                <div class="nav-address border">
+                    <p class="add-first">List your property</p>
+                    <div class="add-icon">
+                        <i class="fa-solid fa-landmark"></i>
+                        <p class="add-second">Grow your business</p>
+                    </div>
+                </div>
+
+
+
+
+            <div class="nav-logo1 border">  </div>
+                <div class="logo1"></div>
+                <div class="nav-address border"> 
+                    <p class="add-first1">Introducing myBiz</p>
+                        <p class="add-second1">business Travel Solutions</p>
+                        <div class="appendright5"></div>
+                  
+                    </div>
+                
+                        <div class="nav-address border">
+                            <p class="add-first">My Trips</p>
+                            <div class="add-icon">
+                                <i class="fa-solid fa-suitcase-rolling"></i>
+                                <p class="add-second">Manage your bookings</p>
+                            </div>
+                        </div>
+
+                        
+                        <div class="dropdown">
+                          <div class="dropdown-btn">Login or Create Account ▼</div>
+                          <div class="dropdown-content">
+                            <form action="login.php" method="POST">
+                              <input type="text" name="username" placeholder="Username" required>
+                              <input type="email" name="email" placeholder="Email" required>
+                              <input type="tel" name="phone" placeholder="Phone Number" required>
+                              <input type="password" name="password" placeholder="Password" required>
+                              <button type="submit">Login</button>
+                            </form>
+                          </div>
+                        </div>
+                        
+                       
+                        <div class="selector-wrapper">
+                            <div class="selector-box" onclick="toggleDropdown()">
+                              <span>🇮🇳 INR | English</span>
+                              <i class="arrow"></i>
+                            </div>
+                        
+                            <div class="dropdown-panel" id="dropdownPanel">
+                              <label>Country</label>
+                              <select>
+                                <option>🇮🇳 India</option>
+                                <option>🇺🇸 USA</option>
+                                <option>🇬🇧 UK</option>
+                              </select>
+                        
+                              <label>Currency</label>
+                              <select>
+                                <option>INR - Indian Rupee</option>
+                                <option>USD - US Dollar</option>
+                                <option>GBP - British Pound</option>
+                              </select>
+                        
+                              <label>Language</label>
+                              <select>
+                                <option>ENG - English</option>
+                                <option>HIN - Hindi</option>
+                                <option>FR - French</option>
+                              </select>
+                        
+                              <button>APPLY</button>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- Sample Content -->
+                        <div class="content">
+                        </div>
+                        
+                        <script>
+                          function toggleDropdown() {
+                            const panel = document.getElementById('dropdownPanel');
+                            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+                          }
+                        
+                          // Close the dropdown when clicking outside
+                          document.addEventListener('click', function(e) {
+                            const wrapper = document.querySelector('.selector-wrapper');
+                            if (!wrapper.contains(e.target)) {
+                              document.getElementById('dropdownPanel').style.display = 'none';
+                            }
+                          });
+                        </script>
+                        
+                        <script>
+      // Connect login form to backend API
+      document.addEventListener('DOMContentLoaded', function() {
+        const loginForm = document.querySelector('.dropdown-content form');
+        if (loginForm) {
+          loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(loginForm);
+            const data = Object.fromEntries(formData.entries());
+            try {
+              const response = await fetch('http://localhost:5000/api/users/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: data.email, password: data.password })
+              });
+              const result = await response.json();
+              if (response.ok) {
+                alert('Login successful! Welcome, ' + result.name);
+              } else {
+                alert('Login failed: ' + (result.error || 'Unknown error'));
+              }
+            } catch (err) {
+              alert('Error connecting to server.');
+            }
+          });
+        }
+      });
+    </script>
+                        
+                        </body>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-all">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <p>flights</p>
+                    </div>
+
+                        <div class="panel-all">
+                    <i class="fa-solid fa-hotel"></i>
+                    <p>Hotels</p>
+                    </div>
+
+                    <div class="panel-all">
+                    <i class="fa-solid fa-house"></i>
+                    <p>Homestay & Villas</p>
+                    </div>
+
+                    <div class="panel-all">
+                    <i class="fa-solid fa-umbrella-beach"></i>
+                    <p>Holiday packages</p>
+                    </div>
+                    
+                    <div class="panel-all">
+                        <i class="fa-solid fa-train-subway"></i>
+                    <p>Trains</p>
+                    </div>
+
+                    <div class="panel-all">
+                        <i class="fa-solid fa-bus"></i>
+                    <p>Buses</p>
+                    </div>
+
+                    <div class="panel-all">
+                        <i class="fa-solid fa-car"></i>
+                    <p>Cabs</p>
+                    </div>
+
+                    <div class="panel-all">
+                        <i class="fa-brands fa-cc-visa"></i>
+                    <p>Visa</p>
+                    </div>
+
+                    <div class="panel-all">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    <p>Forex cards & currency</p>
+                    </div>
+
+                    <div class="panel-all">
+                        <i class="fa-solid fa-address-book"></i>
+                    <p>Travel Insurance</p>
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="hero-section">
+
+                   
+                    <div class="booking-box">
+                        <div class="tabs">
+                          <label><input type="radio" name="trip" checked> One Way</label>
+                          <label><input type="radio" name="trip"> Round Trip</label>
+                          <label><input type="radio" name="trip"> Multi City</label>
+                        </div>
+                    
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="from">From</label>
+                            <select id="from">
+                              <option>Mumbai, India (BOM)</option>
+                              <option>New Delhi, India (DEL)</option>
+                              <option>Bengaluru, India (BLR)</option>
+                              <option>Pune, India (PNQ)</option>
+                            </select>
+                          </div>
+                    
+                          <div class="form-group">
+                            <label for="to">To</label>
+                            <select id="to">
+                              <option>Goa (North), India (GOX)</option>
+                              <option>Chennai, India (MAA)</option>
+                              <option>Hyderabad, India (HYD)</option>
+                            </select>
+                          </div>
+                    
+                          <div class="form-group">
+                            <label for="depart-date">Departure</label>
+                            <input type="date" id="depart-date" value="2025-06-17">
+                          </div>
+                    
+                          <div class="form-group">
+                            <label for="travellers">Travellers & Class</label>
+                            <select id="travellers">
+                              <option>1 Traveller, Economy</option>
+                              <option>2 Travellers, Economy</option>
+                              <option>1 Traveller, Business</option>
+                            </select>
+                          </div>
+                        </div>
+                    
+                        <div class="special-fare">
+                          <div class="fare-option ">Regular</div>
+                          <div class="fare-option ">Student</div>
+                          <div class="fare-option">Senior Citizen</div>
+                          <div class="fare-option">Armed Forces</div>
+                          <div class="fare-option">Doctor and Nurses</div>
+                        </div>
+                    
+                        <button class="search-btn">SEARCH</button>
+                      </div>
+</div>
+                    
+             
+
+<div class="card-container">
+    <h2>For your stay in Goa</h2>
+    <p>Mon, 25 Jun 25 – Thu, 30 Jun 25</p>
+    <div class="cards">
+      <div class="card">
+        <img src="https://r1imghtlak.mmtcdn.com/0f00d12b-9701-420b-b944-7cf35bc4d064.jpg?&downsize=583:388&output-format=jpg" alt="Hotel 1">
+        <div class="card-info">
+          <h4>Ginger Goa, Candolim</h4>
+          <p>North Goa ★★★☆☆</p>
+          <div class="price">₹4,341 per night</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://r1imghtlak.mmtcdn.com/45b443a8383811e9ae4a0242ac110003.jfif?&downsize=583:388&crop=583:388;6,0&output-format=jpg" alt="Hotel 2">
+        <div class="card-info">
+          <h4>Le Meridien Goa</h4>
+          <p>North Goa ★★★★★</p>
+          <div class="price">₹7,950 per night</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/200701091654253400-65eebe5ef85c11ec88fc0a58a9feac02.jpg?&downsize=583:388&crop=583:388;0,12&output-format=jpg" alt="Hotel 3">
+        <div class="card-info">
+          <h4>Holiday Inn Resort</h4>
+          <p>South Goa ★★★★☆</p>
+          <div class="price">₹7,999 per night</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://r1imghtlak.mmtcdn.com/291157df-c1ed-4bef-bd37-871f2b672158.jpg?&downsize=583:388&crop=583:388;0,10&output-format=jpg" alt="Hotel 4">
+        <div class="card-info">
+          <h4>The Hosteller Goa</h4>
+          <p>North Goa</p>
+          <div class="price">₹336 per night</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://r1imghtlak.mmtcdn.com/57bc01342e1f11ea930d0242ac110004.jpg?&downsize=583:388&crop=583:388;0,39&output-format=jpg" alt="Hotel 5">
+        <div class="card-info">
+          <h4>Caravela Beach</h4>
+          <p>Fatrade Beach ★★☆☆☆</p>
+          <div class="price">₹8,999 per night</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://r1imghtlak.mmtcdn.com/ce8d200e236d11e88b5b025f77df004f.jpg?output-quality=75&downsize=243:162&output-format=webp" alt="Hotel 6">
+        <div class="card-info">
+            <h4>Vivanta Goa, Panji</h4>
+            <p>panjim ★★★★☆</p>
+            <div class="price">₹8,599 per night</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offers-box">
+    <div class="offers-header">
+      <h2>Offers</h2>
+      <a href="#" style="color:#007aff; font-weight: bold;">VIEW ALL →</a>
+    </div>
+    <div class="nav-tabs">
+      <span class="active">Hotels</span>
+      <span>All Offers</span>
+      <span>Flights</span>
+      <span>Holidays</span>
+      <span>Trains</span>
+      <span>Cabs</span>
+      <span>Bank Offers</span>
+    </div>
+  
+    <div class="card-grid">
+      <div class="offer-card">
+        <img src="https://promos.makemytrip.com/appfest/2x//student-on-board-dt-13062025.jpg?im=Resize=(134,134)" alt="Student Offer">
+        <div class="card-content">
+          <h4>LIVE NOW: Deals for Students</h4>
+          <p>Up to ₹10,000 OFF* on International Flights & More.</p>
+          <div class="card-footer">
+            <span>T&C'S APPLY</span>
+            <a href="#">BOOK NOW</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="offer-card">
+        <img src="https://promos.makemytrip.com/notification/xhdpi//axis-dh-116x116-04042023.jpg?im=Resize=(134,134)" alt="Hotel India">
+        <div class="card-content">
+          <h4>Grab FLAT 15% OFF* on Hotels in India</h4>
+          <p>Book a relaxing stay with superb savings!</p>
+          <div class="card-footer">
+            <span class="expiry">Expires 30 Jun 25</span>
+            <a href="#">VIEW DETAILS</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="offer-card">
+        <img src="https://promos.makemytrip.com/notification/xhdpi//116X116-axis-02042024.jpg?im=Resize=(134,134)" alt="International Hotel">
+        <div class="card-content">
+          <h4>Grab FLAT 15% OFF* on International Hotels</h4>
+          <p>Book a comfy stay with big savings!</p>
+          <div class="card-footer">
+            <span class="expiry">Expires 30 Jun 25</span>
+            <a href="#">VIEW DETAILS</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="offer-card">
+        <img src="https://promos.makemytrip.com/notification/xhdpi//ih-116x116-06012025.jpg?im=Resize=(134,134)" alt="Flat 15%">
+        <div class="card-content">
+          <h4>FLAT 15% OFF*</h4>
+          <p>on International Hotels!</p>
+          <div class="card-footer">
+            <span>T&C'S APPLY</span>
+            <a href="#">BOOK NOW</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <img src="https://promos.makemytrip.com/notification/xhdpi//116X116-hdfc-20112023.jpg?im=Resize=(134,134)" alt="Up to 15% OFF*">
+        <div class="card-content">
+            <h4>Up to 15% OFF*</h4>
+            <p>On domestic & International Hotels</p>
+            <div class="card-footer">
+                <span>T&C'S APPLY</span>
+                <a href="#">BOOK NOW</a>
+            </div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <img src="https://promos.makemytrip.com/appfest/2x//ginger-116x116-05062025.jpg?im=Resize=(134,134)" alt="Book Ginger Hotels & Enjoy">
+        <div class="card-content">
+            <h4>Book Ginger Hotels & Enjoy</h4>
+            <p>Flat 10% off+ Free savings</p>
+            <div class="card-footer">
+                <span>T&C'S APPLY</span>
+                <a href="#">BOOK NOW</a>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="location-grid">
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/store/GoaDT.JPG" alt="Goa">
+        <div class="location-info">
+          <h4>Goa</h4>
+          <p>Hotels, Budget Hotels, Resorts, Best Hotels, North Goa, Villas</p>
+        </div>
+      </div>
+  
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/store/BangaloreDT.JPG" alt="Bangalore">
+        <div class="location-info">
+          <h4>Bangalore</h4>
+          <p>Hotels, Budget Hotels, Resorts, Near Airport, Guhantara Resort</p>
+        </div>
+      </div>
+  
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/images/50x50-Ooty-23052019.png" alt="Ooty">
+        <div class="location-info">
+          <h4>Ooty</h4>
+          <p>Hotels, Resorts, Cottages, Budget Hotels, Homestay</p>
+        </div>
+      </div>
+  
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/images/50x50-Shimla-23052019.png" alt="Shimla">
+        <div class="location-info">
+          <h4>Shimla</h4>
+          <p>Hotels, Budget Hotels, Best Hotels, Near Mall Road</p>
+        </div>
+      </div>
+  
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/store/JaipurDT.JPG" alt="Jaipur">
+        <div class="location-info">
+          <h4>Jaipur</h4>
+          <p>Hotels, Resorts, Budget Hotels, Best Hotels, Near Railway Station</p>
+        </div>
+      </div>
+  
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/images/CDN_upload/shutterstock_1892460739.jpg" alt="Dubai">
+        <div class="location-info">
+          <h4>Dubai</h4>
+          <p>Hotels, Budget Hotels, 5 Star Hotels, Apartment Hotels, Homestays</p>
+        </div>
+      </div>
+  
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/store/DelhiDT.JPG" alt="Delhi">
+        <div class="location-info">
+          <h4>Delhi</h4>
+          <p>Hotels, Budget Hotels, 5 Star Hotels, Apartment Hotels, Homestays</p>
+        </div>
+      </div>
+
+
+      <div class="location-item">
+        <img src="https://promos.makemytrip.com/store/MumbaiDT.JPG" alt="mumbai">
+        <div class="location-info">
+          <h4>mumbai</h4>
+          <p>Hotels, Budget Hotels, 5 Star Hotels, Apartment Hotels, Homestays</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+
+</header>
+
+    </body>
+</html>
